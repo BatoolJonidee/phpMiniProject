@@ -180,9 +180,7 @@ password.addEventListener("blur",function(){
     document.getElementById("spacePass").style.display="none";
     document.getElementById("lengthPass").style.display="none";
 })
-password.addEventListener("keyup",function(){
-    // let passwordRE=/(^[A-Z])(?=.*\d)(?=.*[a-z]).{8,32}/g;
-    
+password.addEventListener("keyup",function(){    
     var upperCaseLetters = /([A-Z])/g;
     if(password.value.match(upperCaseLetters)) {  
         capitalPass.classList.remove("invalid");
@@ -253,12 +251,10 @@ confPassword.addEventListener("blur",function(){
 })
 confPassword.addEventListener("keyup",function(){
     if(password.value===confPassword.value){
-        console.log("valid");
         document.getElementById("confPassP").classList.remove("invalid");
         document.getElementById("confPassP").classList.add("valid");
         confPasswordFlag=1;
     }else{
-        console.log("in-valid");
         document.getElementById("confPassP").classList.remove("valid");
         document.getElementById("confPassP").classList.add("invalid");
     }
@@ -269,6 +265,9 @@ confPassword.addEventListener("keyup",function(){
 //....................BirthDate.............. //
 
 let bdate=document.getElementById("bdate");
+bdate.addEventListener("blur",function(){
+    document.getElementById("dateP").style.display='none';
+});
 bdate.addEventListener("change",function(){
     let birthDate=document.getElementById("bdate").value;
     birthDate=new Date(birthDate);//convert from string to obj
@@ -360,24 +359,23 @@ btn.addEventListener("click",function(event){
         // userObject["password"]=password.value;
         // userObject["bdate"]=new Date(bdate.value);
         // userObject["createDate"]=new Date();
-        fetch("./create.php",{
-            method:"POST",
-            headers: {
-                Accept: 'application/json',
-                "Content-Type": "application/json"
+        fetch("create.php",{
+            method: "POST",
+            headers:{
+                "Content-Type":"Application/json",
             },
-            body:JSON.stringify({
-                firstName : firstName.value,
-                middleName : middleName.value,
-                lastName : lastName.value,
-                familyName : familyName.value,
-                email : email.value,
-                mobile :mobile.value,
-                password : password.value,
-                bdate : new Date(bdate.value),
-                createDate : new Date()
-            }),
-        }).then(response=>response.json()).then(data=>{
+            body:JSON.stringify({'firstName' : firstName.value,
+            'middleName' : middleName.value,
+            'lastName' : lastName.value,
+            'familyName' : familyName.value,
+            'email' : email.value,
+            'mobile' :mobile.value,
+            'password' : password.value,
+            'bdate' : new Date(bdate.value),
+            'createDate' : new Date(),}),
+        })
+        .then(response=>response.json())
+        .then(data=>{
             alert(data.message);
             firstName.value="";
             middleName.value="";
@@ -386,8 +384,40 @@ btn.addEventListener("click",function(event){
             email.value="";
             mobile.value="";
             password.value="";
-        }).catch(error=>{
-            alert(error);
+        
         })
+        .catch(error=>{
+            console.error("Error:",error);
+        })
+        // fetch("create.php",{
+        //     method:"POST",
+        //     headers: {
+        //         "Content-Type": "Application/json",
+        //     },
+        //     body:JSON.stringify({
+        //         'firstName' : firstName.value,
+        //         'middleName' : middleName.value,
+        //         'lastName' : lastName.value,
+        //         'familyName' : familyName.value,
+        //         'email' : email.value,
+        //         'mobile' :mobile.value,
+        //         'password' : password.value,
+        //         'bdate' : new Date(bdate.value),
+        //         'createDate' : new Date(),
+        //     }).then(response=>response.json())
+        //     .then(data=>{
+        //         alert(data.message);
+        //         firstName.value="";
+        //         middleName.value="";
+        //         lastName.value="";
+        //         familyName.value="";
+        //         email.value="";
+        //         mobile.value="";
+        //         password.value="";
+        //     })
+        // })
+        // .catch(error=>{
+        //     alert(error);
+        // })
     }
 })
