@@ -4,6 +4,16 @@ let lastNameFlag=0;
 let familyNameFlag=0;
 let emailFlag=0;
 let mobileFlag=0;
+let passwordFlag=0;
+
+
+let up=0;
+let lw=0;
+let nm=0;
+let sp=0;
+let sc=0;
+let lg=0;
+
 
 //.....................first name.............. //
 //.....................first name.............. //
@@ -146,17 +156,19 @@ mobile.addEventListener("keyup",function(){
 //.....................Password.............. //
 let password=document.getElementById("password");
 password.addEventListener("focus",function(){
-        document.getElementById("capitalPass").style.display="block";
-        document.getElementById("letterPass").style.display="block";
-        document.getElementById("numberPass").style.display="block";
-        document.getElementById("spChPass").style.display="block";
-        document.getElementById("lengthPass").style.display="block";
+    document.getElementById("capitalPass").style.display="block";
+    document.getElementById("letterPass").style.display="block";
+    document.getElementById("numberPass").style.display="block";
+    document.getElementById("spChPass").style.display="block";
+    document.getElementById("spacePass").style.display="block";
+    document.getElementById("lengthPass").style.display="block";
 })
 password.addEventListener("blur",function(){
     document.getElementById("capitalPass").style.display="none";
     document.getElementById("letterPass").style.display="none";
     document.getElementById("numberPass").style.display="none";
     document.getElementById("spChPass").style.display="none";
+    document.getElementById("spacePass").style.display="none";
     document.getElementById("lengthPass").style.display="none";
 })
 password.addEventListener("keyup",function(){
@@ -189,6 +201,24 @@ password.addEventListener("keyup",function(){
         numberPass.classList.remove("valid");
         numberPass.classList.add("invalid");
     }
+    var noSpace=/^\S*$/;
+    if(password.value.match(noSpace)){
+        spacePass.classList.remove("invalid");
+        spacePass.classList.add("valid");
+        sp=1;
+    } else {
+        spacePass.classList.remove("valid");
+        spacePass.classList.add("invalid");
+    }
+    var special=/[!@#/?\$%\^\&*\)\(+=._-]{1,}/g;
+    if(password.value.match(special)){
+        spChPass.classList.remove("invalid");
+        spChPass.classList.add("valid");
+        sc=1;
+    } else {
+        spChPass.classList.remove("valid");
+        spChPass.classList.add("invalid");
+    }
     if(password.value.length >= 8 && password.value.length<=32) {
         lengthPass.classList.remove("invalid");
         lengthPass.classList.add("valid");
@@ -196,7 +226,55 @@ password.addEventListener("keyup",function(){
     } else {
         lengthPass.classList.remove("valid");
         lengthPass.classList.add("invalid");
-    }if(up && lw && nm && lg){
+    }if(up && lw && nm && sp && sc && lg){
         passwordFlag=1;
+    }
+})
+
+//.....................Confirm Password.............. //
+//.....................Confirm Password.............. //
+//.....................Confirm Password.............. //
+
+let confPassword=document.getElementById("confPassword");
+confPassword.addEventListener("focus",function(){
+    document.getElementById("confPassP").style.display="block";
+})
+confPassword.addEventListener("blur",function(){
+    document.getElementById("confPassP").style.display="none";
+})
+confPassword.addEventListener("keyup",function(){
+    if(password.value===confPassword.value){
+        console.log("valid");
+        document.getElementById("confPassP").classList.remove("invalid");
+        document.getElementById("confPassP").classList.add("valid");
+        confPasswordFlag=1;
+    }else{
+        console.log("in-valid");
+        document.getElementById("confPassP").classList.remove("valid");
+        document.getElementById("confPassP").classList.add("invalid");
+    }
+})
+
+//....................BirthDate.............. //
+//....................BirthDate.............. //
+//....................BirthDate.............. //
+
+let bdate=document.getElementById("bdate");
+bdate.addEventListener("change",function(){
+    let birthDate=document.getElementById("bdate").value;
+    birthDate=new Date(birthDate);//convert from string to obj
+    totalAge=Date.now()-birthDate.getTime();//mill second
+    console.log(typeof(totalAge/1000/60/60/24));
+    ageyear=new Date (totalAge);//convert millsecond to date start from 1970
+    ageyear=Math.abs(ageyear.getUTCFullYear()-1970);
+    // console.log(ageyear);
+    if(ageyear<16){
+        document.getElementById("dateP").style.display='block';
+        dateP.classList.remove("valid");
+        dateP.classList.add("invalid");
+    }else{
+        document.getElementById("dateP").style.display='block';
+        dateP.classList.remove("invalid");
+        dateP.classList.add("valid");
     }
 })
