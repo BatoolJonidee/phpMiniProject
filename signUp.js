@@ -1,3 +1,4 @@
+let userObject={};
 let firstNameFlag=0;
 let middleNameFlag=0;
 let lastNameFlag=0;
@@ -5,7 +6,8 @@ let familyNameFlag=0;
 let emailFlag=0;
 let mobileFlag=0;
 let passwordFlag=0;
-
+let confPasswordFlag=0;
+let bdateFlag=0;
 
 let up=0;
 let lw=0;
@@ -18,6 +20,7 @@ let lg=0;
 //.....................first name.............. //
 //.....................first name.............. //
 //.....................first name.............. //
+
 let firstName=document.getElementById("fname");
 firstName.addEventListener("focus",function(){
     document.getElementById("fnameP").style.display="block";
@@ -40,6 +43,7 @@ firstName.addEventListener("keyup",function(){
 //.....................middle name.............. //
 //.....................middle name.............. //
 //.....................middle name.............. //
+
 let middleName=document.getElementById("mname");
 middleName.addEventListener("focus",function(){
     document.getElementById("mnameP").style.display="block";
@@ -62,6 +66,7 @@ middleName.addEventListener("keyup",function(){
 //.....................last name.............. //
 //.....................last name.............. //
 //.....................last name.............. //
+
 let lastName=document.getElementById("lname");
 lastName.addEventListener("focus",function(){
     document.getElementById("lnameP").style.display="block";
@@ -84,6 +89,7 @@ lastName.addEventListener("keyup",function(){
 //.....................family name.............. //
 //.....................family name.............. //
 //.....................family name.............. //
+
 let familyName=document.getElementById("family");
 familyName.addEventListener("focus",function(){
     document.getElementById("famnameP").style.display="block";
@@ -106,6 +112,7 @@ familyName.addEventListener("keyup",function(){
 //.....................Email.............. //
 //.....................Email.............. //
 //.....................Email.............. //
+
 let email=document.getElementById("email");
 email.addEventListener("focus",function(){
     document.getElementById("emailP").style.display="block";
@@ -130,6 +137,7 @@ email.addEventListener("keyup",function(){
 //.....................Mobile.............. //
 //.....................Mobile.............. //
 //.....................Mobile.............. //
+
 let mobile=document.getElementById("mobile");
 mobile.addEventListener("focus",function(){
     document.getElementById("mobileNumP").style.display="block";
@@ -154,6 +162,7 @@ mobile.addEventListener("keyup",function(){
 //.....................Password.............. //
 //.....................Password.............. //
 //.....................Password.............. //
+
 let password=document.getElementById("password");
 password.addEventListener("focus",function(){
     document.getElementById("capitalPass").style.display="block";
@@ -276,5 +285,109 @@ bdate.addEventListener("change",function(){
         document.getElementById("dateP").style.display='block';
         dateP.classList.remove("invalid");
         dateP.classList.add("valid");
+        bdateFlag=1;
+    }
+})
+
+//....................Submit.............. //
+//....................Submit.............. //
+//....................Submit.............. //
+
+let btn=document.getElementById("submitBtn");
+btn.addEventListener("click",function(event){
+
+    if(firstNameFlag ==0){
+        event.preventDefault();
+        document.getElementById("fnameP").style.display="block";
+        document.getElementById("fnameP").classList.remove("valid");
+        document.getElementById("fnameP").classList.add("invalid");
+    }
+    if(middleNameFlag ==0){
+        event.preventDefault();
+        document.getElementById("mnameP").style.display="block";
+        document.getElementById("mnameP").classList.remove("valid");
+        document.getElementById("mnameP").classList.add("invalid");
+    }
+    if(lastNameFlag ==0){
+        event.preventDefault();
+        document.getElementById("lnameP").style.display="block";
+        document.getElementById("lnameP").classList.remove("valid");
+        document.getElementById("lnameP").classList.add("invalid");
+    }
+    if(familyNameFlag ==0){
+        event.preventDefault();
+        document.getElementById("famnameP").style.display="block";
+        document.getElementById("famnameP").classList.remove("valid");
+        document.getElementById("famnameP").classList.add("invalid");
+    }
+    if(emailFlag ==0){
+        event.preventDefault();
+        document.getElementById("emailP").style.display="block";
+        document.getElementById("emailP").classList.remove("valid");
+        document.getElementById("emailP").classList.add("invalid");
+    }
+    if(mobileFlag ==0){
+        event.preventDefault();
+        document.getElementById("mobileNumP").style.display="block";
+        document.getElementById("mobileNumP").classList.remove("valid");
+        document.getElementById("mobileNumP").classList.add("invalid");
+    }
+    if(passwordFlag==0){
+        event.preventDefault();
+        document.getElementById("capitalPass").style.display="block";
+        document.getElementById("letterPass").style.display="block";
+        document.getElementById("numberPass").style.display="block";
+        document.getElementById("spChPass").style.display="block";
+        document.getElementById("spacePass").style.display="block";
+        document.getElementById("lengthPass").style.display="block";
+    }
+    if(confPasswordFlag==0){
+        event.preventDefault();
+        document.getElementById("confPassP").style.display="block";
+    }
+    if(bdateFlag==0){
+        event.preventDefault();
+        document.getElementById("dateP").style.display="block";
+    }
+    if(firstNameFlag && middleNameFlag && lastNameFlag && familyNameFlag && emailFlag && mobileFlag && passwordFlag && confPasswordFlag && bdateFlag ){
+        event.preventDefault();
+        // userObject["firstName"]=firstName.value;
+        // userObject["middleName"]=middleName.value;
+        // userObject["lastName"]=lastName.value;
+        // userObject["familyName"]=familyName.value;
+        // userObject["email"]=email.value;
+        // userObject["mobile"]=mobile.value;
+        // userObject["password"]=password.value;
+        // userObject["bdate"]=new Date(bdate.value);
+        // userObject["createDate"]=new Date();
+        fetch("./create.php",{
+            method:"POST",
+            headers: {
+                Accept: 'application/json',
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                firstName : firstName.value,
+                middleName : middleName.value,
+                lastName : lastName.value,
+                familyName : familyName.value,
+                email : email.value,
+                mobile :mobile.value,
+                password : password.value,
+                bdate : new Date(bdate.value),
+                createDate : new Date()
+            }),
+        }).then(response=>response.json()).then(data=>{
+            alert(data.message);
+            firstName.value="";
+            middleName.value="";
+            lastName.value="";
+            familyName.value="";
+            email.value="";
+            mobile.value="";
+            password.value="";
+        }).catch(error=>{
+            alert(error);
+        })
     }
 })
