@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+form {
+    width: 40%;
+    text-align: center;
+    border: 5px solid rgb(133, 133, 223);
+    border-radius: 10px;
+    padding: 2%;
+}
+input{
+    width:60%;
+}
+p {
+    display: none;
+}
+.valid {
+    color: green;
+    text-align: center;
+}
+.valid:before {
+    content: "✔ ";
+    text-align: center;
+}
+.invalid {
+    color: red;
+    text-align: center;
+}
+.invalid:before {
+    content: "✖ ";
+    text-align: center;
+}

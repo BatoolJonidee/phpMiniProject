@@ -4,37 +4,65 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="./signUp.css" />
         <style>
-            form {
-                width: 40%;
-                text-align: center;
-                border: 5px solid rgb(133, 133, 223);
-                border-radius: 10px;
-                padding: 2%;
-            }
+            
         </style>
     </head>
     <body>
-        <form action="" method="post">
-            <label for="fname">First Name:</label><br />
-            <input type="text" name="fname" id="fname" required /><br />
-            <label for="lname">Last Name:</label><br/>
-            <input type="text" name="lname" id="lname" required /><br/>
-            <label for="mname">Middle Name:</label><br />
-            <input type="text" name="mname" id="mname" required /><br />
-            <label for="family">Family Name:</label><br/>
-            <input type="text" name="family" id="family" required /><br/>
-            <hr style="width:40%">
-            <label for="email">Email:</label><br/>
-            <input type="email" name="email" id="email" required /><br/>
-            <label for="mobile">Mobile:</label><br/>
-            <input type="number" name="mobile" id="mobile" required /><br/>
-            <label for="password">Password:</label><br/>
-            <input type="password" name="password" id="password" required /><br/>
+        <form action="" method="post" id="signUpForm">
+            <!-- <label for="fname">First Name:</label><br /> -->
+            <input type="text" name="fname" id="fname" placeholder="First Name.." required /><br />
+            <p id="fnameP" class="invalid">
+                <b>letters</b> Only
+            </p>
+            <!-- <label for="mname">Middle Name:</label><br /> -->
+            <input type="text" name="mname" id="mname" placeholder="Middle Name.." required /><br />
+            <p id="mnameP" class="invalid">
+                <b>letters</b> Only
+            </p>
+            <!-- <label for="lname">Last Name:</label><br/> -->
+            <input type="text" name="lname" id="lname" placeholder="Last Name.." required /><br/>
+            <p id="lnameP" class="invalid">
+                <b>letters</b> Only
+            </p>
+            <!-- <label for="family">Family Name:</label><br/> -->
+            <input type="text" name="family" id="family" placeholder="Family Name.." required /><br/>
+            <p id="famnameP" class="invalid">
+                <b>letters</b> Only
+            </p><br/>
+            <!-- <label for="email">Email:</label><br/> -->
+            <input type="email" name="email" id="email" placeholder="Email.." required /><br/>
+            <p id="emailP" class="invalid">
+                <b>example@mail.com</b>
+            </p>
+            <!-- <label for="mobile">Mobile:</label><br/> -->
+            <input type="number" name="mobile" id="mobile" placeholder="Mobile-14 Digit" required /><br/>
+            <p id="mobileNumP" class="invalid">
+                Ex:(009627777777777)
+            </p>
+            <!-- <label for="password">Password:</label><br/> -->
+            <input type="password" name="password" id="password" placeholder="Password.." /><br/>
+            <p id="capitalPass" class="invalid">
+                <b>Uppercase</b> letter
+            </p>
+            <p id="letterPass" class="invalid">
+                <b>Lowercase</b> letter
+            </p>
+            <p id="numberPass" class="invalid">
+                <b>Number</b>
+            </p><p id="spChPass" class="invalid">
+                <b>Special Characters</b>
+            </p>
+            <p id="lengthPass" class="invalid">
+                <b>(8-32) characters</b>
+            </p>
+  
             <label for="confPassword">Confirm Password:</label><br/>
             <input type="password" name="confPassword" id="confPassword" required/><br/>
             <label for="birthDate">Date of Birth</label><br/>
             <input type="date">
         </form>
+        <script src="./signUp.js"></script>
     </body>
 </html>
