@@ -362,17 +362,18 @@ btn.addEventListener("click",function(event){
         fetch("create.php",{
             method: "POST",
             headers:{
-                "Content-Type":"Application/json",
+                "Content-Type":"application/json",
             },
             body:JSON.stringify({'firstName' : firstName.value,
-            'middleName' : middleName.value,
-            'lastName' : lastName.value,
-            'familyName' : familyName.value,
-            'email' : email.value,
-            'mobile' :mobile.value,
-            'password' : password.value,
-            'bdate' : new Date(bdate.value),
-            'createDate' : new Date(),}),
+            middleName : middleName.value,
+            lastName : lastName.value,
+            familyName : familyName.value,
+            email : email.value,
+            mobile :mobile.value,
+            password : password.value,
+            // 'bdate' : new Date(bdate.value),
+            // 'createDate' : new Date(),
+        }),
         })
         .then(response=>response.json())
         .then(data=>{

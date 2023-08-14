@@ -73,6 +73,13 @@ p {
     input{
         width:80%;
     }
+    #submitBtn:hover {
+        width:85%;
+        font-size: 22px;
+        color: #e8cfff;
+        box-shadow: 2px 2px 10px #d5cfdf;
+        transition: all .5s ease-in-out;
+    }
 }
 @media (min-width:450px) and (max-width:599.9px){
     form{
@@ -80,6 +87,13 @@ p {
     }
     input{
         width:80%;
+    }
+    #submitBtn:hover {
+        width:90%;
+        font-size: 22px;
+        color: #e8cfff;
+        box-shadow: 2px 2px 10px #d5cfdf;
+        transition: all .5s ease-in-out;
     }
 }
 @media (min-width:350px) and (max-width:449.9px){
@@ -89,6 +103,13 @@ p {
     input{
         width:90%;
     }
+    #submitBtn:hover {
+        width:95%;
+        font-size: 22px;
+        color: #e8cfff;
+        box-shadow: 2px 2px 10px #d5cfdf;
+        transition: all .5s ease-in-out;
+    }
 }
 @media (max-width:349.9px){
     form{
@@ -96,5 +117,12 @@ p {
     }
     input{
         width:98%;
+    }
+    #submitBtn:hover {
+        width:100%;
+        font-size: 22px;
+        color: #e8cfff;
+        box-shadow: 2px 2px 10px #d5cfdf;
+        transition: all .5s ease-in-out;
     }
 }

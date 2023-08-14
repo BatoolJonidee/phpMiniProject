@@ -8,6 +8,8 @@ body{
     overflow-x: hidden;
     background-image: url("./imgs/bg1.png");
     background-size: cover;
+    display: flex;
+    
 }
 form {
     width: 60%;
